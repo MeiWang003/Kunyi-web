@@ -1,0 +1,43 @@
+<html>
+<body>
+
+<script type="text/javascript">
+dic ={"space1":{"jgs":[],"space_time_results":[]},"space2":{"jgs":[{"id":15,"Unit":"那邦镇","lei":"医疗机构","E":97.559,"N":24.7542,"maptype":"GCJ-02","ok":1}],"space_time_results":[{"no":1,"location_ids":"1","c_id":1,"c_r":0,"TimeCluster":5,"CA":1,"uA":0.75,"LGLRA":0.04755394943117175,"Pvalue":0.619,"ok":1},{
+"no":2,"location_ids":"1","c_id":1,"c_r":0,"TimeCluster":6,"CA":61,"uA":3.98515,"LGLRA":111.0141,"Pvalue":1.466870377E-103,"ok":1}]},"space3":{"jgs":[{"id":15,"Unit":"那邦镇","lei":"医疗机构","E":97.559,"N":24.7542,"maptype":"GCJ-02","ok":1}],"space_time_results":[{"no":1,"location_ids":"1","c_id":1,"c_r":0,"TimeCluster":5,"CA":1,"uA":0.75,"LGLRA":0.04755394943117175,"Pvalue":8.4670377E-106,"ok":1},{"no":2,"location_ids":"1","c_id":1,"c_r":0,"TimeCluster":6,"CA":61,"uA":3.984630163304515,"LGLRA":111.0157224293711,"Pvalue":3.477E-103,"ok":1}]}};
+
+var arr = [];
+var arr2 = {};
+arr.push(dic);
+alert(JSON.stringify(arr));
+
+alert(arr.length);
+for(var i=0;i<arr.length;i++){
+   alert("arr[i]:"+JSON.stringify(arr[i]));
+  for(var key in arr[i]){
+  for(var j=0;j<arr[i][key]["space_time_results"].length;j++){
+
+         no = arr[i][key]["space_time_results"][j].no
+         arr2[key+"-"+no] = arr[i][key]["space_time_results"][j];
+    //  alert(key+':'+arr[i][key][j].value);
+    }
+  }
+}
+   // document.writeln(JSON.stringify(dic));
+    //  document.writeln(JSON.stringify(arr2));
+
+var sdic=Object.keys(arr2).sort(function(a,b){return arr2[a]["Pvalue"]-arr2[b]["Pvalue"]});
+for(ki in sdic){ 
+    var ki = parseInt(ki);
+    var num = ki +1;
+    arr2[sdic[ki]]["no"]=num;
+   
+    //alert(JSON.stringify(arr2[sdic[ki]]));         
+   // document.writeln(sdic[ki]+":"+dic[sdic[ki]]+",");
+  // document.writeln(JSON.stringify(arr2[sdic[ki]]));
+} 
+  document.writeln(JSON.stringify(dic));
+</script>
+
+</body>
+</html>
+
